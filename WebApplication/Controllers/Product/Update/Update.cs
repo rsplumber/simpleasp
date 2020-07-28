@@ -4,6 +4,7 @@
  using WebApplication.Controllers.Base;
  using WebApplication.Controllers.Category.Find;
  using WebApplication.Controllers.Product.DTOs;
+ using WebApplication.Domain.Product.Model;
  using WebApplication.Domain.Product.Service;
 
  namespace WebApplication.Controllers.Product.Update
@@ -20,9 +21,11 @@
         }
 
         [HttpPatch]
-        public override async Task<ApiResponse<UpdateProductResponse>> Response([FromBody]UpdateProductRequest request)
+        public override async Task<ApiResponse<UpdateProductResponse>> Response([FromForm]UpdateProductRequest request)
         {
             var model = await _productService.UpdateProductAsync(request);
+            
+            TinyMapper.Bind<ProductEntity, ProductDto>();
             var dto = TinyMapper.Map<ProductDto>(model);
             
             return new ApiResponse<UpdateProductResponse>( new UpdateProductResponse(dto))

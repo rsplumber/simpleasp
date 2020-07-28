@@ -2,11 +2,11 @@
 {
     public class DeleteProductResponse
     {
-        public bool deleted { get; set; }
+        public bool Deleted { get; set; }
 
         public DeleteProductResponse(bool deleted)
         {
-            this.deleted = deleted;
+            Deleted = deleted;
         }
     }
 }

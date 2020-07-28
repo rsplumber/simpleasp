@@ -5,11 +5,11 @@
     public class UpdateProductResponse
     {
         
-        public ProductDto ProductDto { get; set; }
+        public ProductDto Product { get; set; }
 
         public UpdateProductResponse(ProductDto productDto)
         {
-            ProductDto = productDto;
+            Product = productDto;
         }
     }
 }

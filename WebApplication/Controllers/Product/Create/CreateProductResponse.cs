@@ -4,11 +4,11 @@
 {
     public class CreateProductResponse
     {
-        public ProductDto ProductDto { get; set; }
+        public ProductDto Product { get; set; }
 
         public CreateProductResponse(ProductDto productDto)
         {
-            ProductDto = productDto;
+            Product = productDto;
         }
     }
 }

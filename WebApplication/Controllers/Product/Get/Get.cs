@@ -1,10 +1,12 @@
-﻿﻿using System.Linq;
+﻿﻿using System;
+ using System.Linq;
  using System.Threading.Tasks;
  using Microsoft.AspNetCore.Mvc;
  using Nelibur.ObjectMapper;
  using WebApplication.Controllers.Base;
  using WebApplication.Controllers.Category.Find;
  using WebApplication.Controllers.Product.DTOs;
+ using WebApplication.Domain.Product.Model;
  using WebApplication.Domain.Product.Service;
 
  namespace WebApplication.Controllers.Product.Get
@@ -23,7 +25,9 @@
         public override async Task<ApiResponse<GetProductResponse>> Response([FromQuery]GetProductRequest request)
         {
             var models = await _productService.GetAllProducts(request);
-            var dtos = models.Select(entity => TinyMapper.Map<ProductDto>(entity)).ToList();
+            
+            TinyMapper.Bind<ProductEntity, ProductDto>();
+            var dtos = models.Select(TinyMapper.Map<ProductDto>).ToList();
 
             return new ApiResponse<GetProductResponse>( new GetProductResponse(dtos))
                 .StatusCode(200)

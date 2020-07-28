@@ -5,11 +5,11 @@
 {
     public class GetProductResponse
     {
-        public List<ProductDto> ProductDtos;
+        public List<ProductDto> Products { get; set; }
 
         public GetProductResponse(List<ProductDto> productDtos)
         {
-            ProductDtos = productDtos;
+            Products = productDtos;
         }
     }
 }

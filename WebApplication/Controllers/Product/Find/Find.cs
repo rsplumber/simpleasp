@@ -4,6 +4,7 @@
  using WebApplication.Controllers.Base;
  using WebApplication.Controllers.Category.Find;
  using WebApplication.Controllers.Product.DTOs;
+ using WebApplication.Domain.Product.Model;
  using WebApplication.Domain.Product.Service;
 
  namespace WebApplication.Controllers.Product.Find
@@ -23,6 +24,8 @@
         public override async Task<ApiResponse<FindProductResponse>> Response([FromRoute]FindProductRequest request)
         {
             var model = await _productService.FindById(request.productId);
+            
+            TinyMapper.Bind<ProductEntity, ProductDto>();
             var dto = TinyMapper.Map<ProductDto>(model);
             
             return new ApiResponse<FindProductResponse>( new FindProductResponse(dto))
