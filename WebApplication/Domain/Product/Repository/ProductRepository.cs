@@ -39,7 +39,8 @@ namespace WebApplication.Domain.Product.Repository
 
         public async Task<ProductEntity> UpdateAsync(ProductEntity model)
         {
-            var savedModel = _myDbContext.Add(model);
+            
+            var savedModel = _myDbContext.Update(model);
             await _myDbContext.SaveChangesAsync();
             return savedModel.Entity;
         }
